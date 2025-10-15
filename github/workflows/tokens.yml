@@ -1,0 +1,22 @@
+name: tokens
+on:
+push:
+paths: ["tokens.json"]
+pull_request:
+paths: ["tokens.json"]
+jobs:
+build-css:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v4
+- uses: actions/setup-node@v4
+with: { node-version: "20" }
+- run: npm ci || npm i
+- run: npm run build:tokens
+- name: Commit generated tokens.css (push only)
+if: github.event_name == 'push'
+run: |
+git config user.name "github-actions"
+git config user.email "actions@github.com"
+git add src/styles/tokens.css
+git diff --cached --quiet || git commit -m "chore: rebuild tokens.css" && git push

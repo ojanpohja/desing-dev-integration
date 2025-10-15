@@ -1,0 +1,22 @@
+{
+"name": "desing-dev-integration",
+"private": true,
+"type": "module",
+"scripts": {
+"dev": "astro dev",
+"build": "astro build",
+"preview": "astro preview",
+"build:tokens": "node tools/build-tokens.mjs",
+"predev": "npm run build:tokens",
+"prebuild": "npm run build:tokens"
+},
+"dependencies": {
+"astro": "^4.15.0",
+"gray-matter": "^4.0.3",
+"marked": "^12.0.2"
+},
+"devDependencies": {
+"@types/node": "^22.5.4",
+"typescript": "^5.5.4"
+}
+}

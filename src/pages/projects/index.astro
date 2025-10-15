@@ -1,0 +1,9 @@
+---
+import Page from '../../layouts/Page.astro';
+import ProjectList from '../../components/ProjectList.astro';
+import { getAllProjects } from '../../lib/content';
+const items = getAllProjects();
+---
+<Page title="Projects">
+<ProjectList items={items} />
+</Page>

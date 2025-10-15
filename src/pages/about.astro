@@ -1,0 +1,8 @@
+---
+import Page from '../layouts/Page.astro';
+import { getPage } from '../lib/content';
+const page = getPage('about');
+---
+<Page title={page.data.title}>
+<div set:html={page.body} />
+</Page>
