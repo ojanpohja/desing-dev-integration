@@ -1,7 +1,2 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig({
-  plugins: [react()],
-  base: '/desing-dev-integration/', // must match the repo name
-});
+declare const _default: import("vite").UserConfig;
+export default _default;
