@@ -8,11 +8,11 @@ export const mantineTheme = {
     "xl": 28
   },
   "spacing": {
-    "xs": 4,
-    "sm": 8,
-    "md": 16,
-    "lg": 24,
-    "xl": 32
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px"
   },
   "radius": {
     "sm": "6px",
