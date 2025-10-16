@@ -21,16 +21,16 @@ export const mantineTheme = {
   },
   "colors": {
     "primary": [
-      "#e7eeff",
-      "#cbdcff",
-      "#a9c5ff",
-      "#87adff",
-      "#6998ff",
-      "#4f86ff",
-      "#3a79ff",
-      "#2b6df5",
-      "#245fe0",
-      "#1b4bb8"
+      "#f2f1f9",
+      "#f2f1f9",
+      "#f2f1f9",
+      "#f2f1f9",
+      "#f2f1f9",
+      "#e6e3f3",
+      "#cbc3e6",
+      "#9e83f5",
+      "#5236ab",
+      "#200a58"
     ]
   },
   "primaryColor": "primary",
