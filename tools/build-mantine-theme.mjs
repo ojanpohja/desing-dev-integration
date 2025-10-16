@@ -44,10 +44,13 @@ function buildTheme(tokens) {
   }
 
   const radius = {};
-  for (const k of ['xs','sm','md','lg','xl']) {
-    const v = pick(core, ['radius', k]);
-    if (v) radius[k] = asNumber(value(v, undefined), undefined);
-  }
+    for (const k of ['xs', 'sm', 'md', 'lg', 'xl']) {
+      const v = pick(core, ['radius', k]);
+      if (v != null) {
+        const n = asNumber(value(v, undefined), undefined);
+        if (n != null) radius[k] = `${n}px`; // <-- strings like "10px"
+      }
+    }
 
   const primaryScale = value(pick(brand, ['palette','primary-scale']), null);
   const colors = {
@@ -58,12 +61,12 @@ function buildTheme(tokens) {
 
   const theme = {
     fontFamily,
-    fontSizes: Object.fromEntries(Object.entries(fontSizes).filter(([,v]) => v != null)),
-    spacing: Object.fromEntries(Object.entries(spacing).filter(([,v]) => v != null)),
-    radius: Object.fromEntries(Object.entries(radius).filter(([,v]) => v != null)),
+    fontSizes: Object.fromEntries(Object.entries(fontSizes).filter(([, v]) => v != null)),
+    spacing: Object.fromEntries(Object.entries(spacing).filter(([, v]) => v != null)),
+    radius: Object.fromEntries(Object.entries(radius).filter(([, v]) => v != null)),
     colors,
     primaryColor: 'primary',
-    defaultRadius: radius.md ?? 10
+    defaultRadius: 'md', // <-- use a named size, not a number
   };
   return theme;
 }

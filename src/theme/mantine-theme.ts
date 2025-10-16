@@ -15,9 +15,9 @@ export const mantineTheme = {
     "xl": 32
   },
   "radius": {
-    "sm": 6,
-    "md": 10,
-    "lg": 16
+    "sm": "6px",
+    "md": "10px",
+    "lg": "16px"
   },
   "colors": {
     "primary": [
@@ -34,5 +34,5 @@ export const mantineTheme = {
     ]
   },
   "primaryColor": "primary",
-  "defaultRadius": 10
+  "defaultRadius": "md"
 } as const;
