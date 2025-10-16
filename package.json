@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently -k \"npm:watch:tokens\" \"vite\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "build:tokens": "node tools/build-mantine-theme.mjs",
     "predev": "npm run build:tokens",
-    "prebuild": "npm run build:tokens"
+    "prebuild": "npm run build:tokens",
+    "watch:tokens": "chokidar tokens/tokens.json -c \"npm run build:tokens\""
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -25,6 +26,8 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.0.4",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
