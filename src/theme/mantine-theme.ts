@@ -2,10 +2,10 @@
 export const mantineTheme = {
   "fontFamily": "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif",
   "fontSizes": {
-    "sm": 14,
-    "md": 16,
-    "lg": 20,
-    "xl": 28
+    "sm": "14px",
+    "md": "16px",
+    "lg": "20px",
+    "xl": "28px"
   },
   "spacing": {
     "xs": "4px",

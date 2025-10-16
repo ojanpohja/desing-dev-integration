@@ -32,11 +32,14 @@ function buildTheme(tokens) {
     'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'
   );
 
-  // fontSizes (Mantine v7 accepts numbers here)
+  // fontSizes must be strings like "14px" in v7
   const fontSizes = {};
   for (const k of ['xs', 'sm', 'md', 'lg', 'xl']) {
     const v = pick(core, ['fontSizes', k]);
-    if (v != null) fontSizes[k] = asNumber(value(v, undefined), undefined);
+    if (v != null) {
+      const n = asNumber(value(v, undefined), undefined);
+      if (n != null) fontSizes[k] = `${n}px`;
+    }
   }
 
   // spacing must be strings like "16px"
