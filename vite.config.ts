@@ -1,7 +1,7 @@
-// vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+
 export default defineConfig({
   plugins: [react()],
-  base: '/desing-dev-integration/', // repo name
+  base: '/desing-dev-integration/', // must match the repo name
 });
