@@ -1,38 +1,28 @@
-import { ActionIcon, Button, Card, Group, Stack, Text, Title, useMantineColorScheme } from '@mantine/core';
-import { Moon, Sun } from 'lucide-react';
-
-function ColorSchemeToggle() {
-  const { colorScheme, setColorScheme } = useMantineColorScheme();
-  const next = colorScheme === 'dark' ? 'light' : 'dark';
-  return (
-    <ActionIcon onClick={() => setColorScheme(next)} variant="default" aria-label="Toggle color scheme">
-      {colorScheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-    </ActionIcon>
-  );
-}
+// src/App.tsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { MantineProvider } from "@mantine/core";
+import { mantineTheme } from "./theme/mantine-theme";
+import SiteLayout from "./layouts/SiteLayout";
+import Home from "./pages/Home";
+import WorkIndex from "./pages/WorkIndex";
+import WorkPage from "./pages/WorkPage";
+import CaseStudiesIndex from "./pages/CaseStudiesIndex";
+import CaseStudyPage from "./pages/CaseStudyPage";
 
 export default function App() {
   return (
-    <Stack p="lg" gap="lg">
-      <Group justify="space-between">
-        <Title order={2}>Mantine + Tokens demo</Title>
-        <ColorSchemeToggle />
-      </Group>
-
-      <Text c="dimmed">All styling comes from the generated theme based on tokens/tokens.json</Text>
-
-      <Group>
-        <Button>Primary button</Button>
-        <Button variant="light">Light variant</Button>
-        <Button variant="outline">Outline</Button>
-      </Group>
-
-      <Card shadow="sm" radius="md" p="lg" withBorder>
-        <Stack>
-          <Title order={4}>Card using theme.radius.md and theme.spacing</Title>
-          <Text>Try editing tokens and see it update.</Text>
-        </Stack>
-      </Card>
-    </Stack>
+    <BrowserRouter>
+      <MantineProvider theme={mantineTheme} defaultColorScheme="auto">
+        <Routes>
+          <Route element={<SiteLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/work" element={<WorkIndex />} />
+            <Route path="/work/:slug" element={<WorkPage />} />
+            <Route path="/case-studies" element={<CaseStudiesIndex />} />
+            <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
+          </Route>
+        </Routes>
+      </MantineProvider>
+    </BrowserRouter>
   );
 }
