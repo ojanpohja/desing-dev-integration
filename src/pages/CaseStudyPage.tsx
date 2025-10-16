@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
-import { getCaseStudy, getSeriesNeighbors } from "../content";
 import { Title, Text, Stack, Anchor, Divider, Image } from "@mantine/core";
 import ReactMarkdown from "react-markdown";
+import { getCaseStudy, getSeriesNeighbors } from "../content";
 import SeriesPager from "../components/SeriesPager";
 
 export default function CaseStudyPage() {
@@ -23,38 +23,29 @@ export default function CaseStudyPage() {
   return (
     <Stack p="lg" gap="md" maw={900}>
       <Title order={2}>{cs.title}</Title>
-      {cs.date && <Text c="dimmed">{cs.date}</Text>}
+      {cs.date ? <Text c="dimmed">{cs.date}</Text> : null}
 
-      {/* HERO image */}
-        {cs.coverImage && (
-        +   <Image src={cs.coverImage} alt={cs.coverAlt || cs.title} radius="md" mt="sm" />
-        + )}
+      {/* HERO image (optional) */}
+      {cs.coverImage ? (
+        <Image
+          src={cs.coverImage}
+          alt={cs.coverAlt || cs.title}
+          radius="md"
+          mt="sm"
+        />
+      ) : null}
 
       <Divider />
 
       <ReactMarkdown
         components={{
-          h1: (props) => <Title order={2} {...props} />,
-          h2: (props) => <Title order={3} mt="md" {...props} />,
-          h3: (props) => <Title order={4} mt="md" {...props} />,
-          p:  (props) => <Text my="sm" {...props} />,
-          a:  (props) => <Anchor {...props} />,
-          img: (props) => (
+          // note: react-markdown v8 passes a 'node' prop; ignore it to keep TS happy
+          h1: ({ node, ...props }) => <Title order={2} {...props} />,
+          h2: ({ node, ...props }) => <Title order={3} mt="md" {...props} />,
+          h3: ({ node, ...props }) => <Title order={4} mt="md" {...props} />,
+          p:  ({ node, ...props }) => <Text my="sm" {...props} />,
+          a:  ({ node, ...props }) => <Anchor {...props} />,
+          img: ({ node, ...props }) => (
             <Image
               src={props.src ?? ""}
               alt={props.alt ?? ""}
-              radius="md"
-              my="md"
-              withPlaceholder
-            />
-          ),
-        }}
-      >
-        {cs.body}
-      </ReactMarkdown>
-
-      <Divider my="md" />
-      <SeriesPager current={cs} siblings={siblings} index={index} prev={prev} next={next} />
-    </Stack>
-  );
-}
