@@ -1,14 +1,25 @@
-import { Button, Card, Group, Stack, Text, Title } from '@mantine/core';
-import { ActionIcon, useMantineColorScheme } from '@mantine/core';
-import { Moon, Sun } from 'lucide-react'; // optional if you have lucide-react
+import { ActionIcon, Button, Card, Group, Stack, Text, Title, useMantineColorScheme } from '@mantine/core';
+import { Moon, Sun } from 'lucide-react';
+
+function ColorSchemeToggle() {
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
+  const next = colorScheme === 'dark' ? 'light' : 'dark';
+  return (
+    <ActionIcon onClick={() => setColorScheme(next)} variant="default" aria-label="Toggle color scheme">
+      {colorScheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+    </ActionIcon>
+  );
+}
 
 export default function App() {
   return (
     <Stack p="lg" gap="lg">
-      <Title order={2}>Mantine + Tokens demo</Title>
-      <Text c="dimmed">
-        All styling comes from the generated theme based on tokens/tokens.json
-      </Text>
+      <Group justify="space-between">
+        <Title order={2}>Mantine + Tokens demo</Title>
+        <ColorSchemeToggle />
+      </Group>
+
+      <Text c="dimmed">All styling comes from the generated theme based on tokens/tokens.json</Text>
 
       <Group>
         <Button>Primary button</Button>
@@ -24,15 +35,4 @@ export default function App() {
       </Card>
     </Stack>
   );
-
-
-function ColorSchemeToggle() {
-  const { colorScheme, setColorScheme } = useMantineColorScheme();
-  const next = colorScheme === 'dark' ? 'light' : 'dark';
-  return (
-    <ActionIcon onClick={() => setColorScheme(next)} title="Toggle color scheme">
-      {colorScheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-    </ActionIcon>
-  );
-}
 }
