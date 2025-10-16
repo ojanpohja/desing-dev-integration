@@ -14,7 +14,7 @@ export default function CaseStudiesIndex() {
       {items.map((cs) => (
         <Grid.Col span={{ base: 12, sm: 6, md: 4 }} key={cs.slug}>
           <Card withBorder radius="md" p="md" component={Link} to={`/case-studies/${cs.slug}`} style={{ textDecoration: "none" }}>
-            {cs.thumbImage && <Image src={cs.thumbImage} alt="" radius="sm" mb="sm" withPlaceholder />}
+            {cs.thumbImage && <Image src={cs.thumbImage} alt="" radius="sm" mb="sm" />}
             <Stack gap={4}>
               <Title order={4}>{cs.title}</Title>
               <Text c="dimmed" fz="sm">{cs.summary}</Text>

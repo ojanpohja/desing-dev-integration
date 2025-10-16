@@ -26,15 +26,9 @@ export default function CaseStudyPage() {
       {cs.date && <Text c="dimmed">{cs.date}</Text>}
 
       {/* HERO image */}
-      {cs.coverImage && (
-        <Image
-          src={cs.coverImage}
-          alt={cs.coverAlt || cs.title}
-          radius="md"
-          mt="sm"
-          withPlaceholder
-        />
-      )}
+        {cs.coverImage && (
+        +   <Image src={cs.coverImage} alt={cs.coverAlt || cs.title} radius="md" mt="sm" />
+        + )}
 
       <Divider />
 
