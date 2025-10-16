@@ -2,7 +2,7 @@ console.log("markdown matched:", Object.keys(
   (import.meta as any).glob ? {} : {}
 ));
 
-import { Card, Stack, Title, Text, Group, Badge, Anchor } from "@mantine/core";
+import { Badge, Card, Grid, Group, Image, Stack, Text, Title } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { getAllCaseStudies } from "../content";
 
@@ -10,26 +10,21 @@ export default function CaseStudiesIndex() {
   const items = getAllCaseStudies();
 
   return (
-    <Stack p="lg" gap="lg">
-      <Title order={2}>Case studies</Title>
-      {items.map(cs => (
-        <Card key={cs.slug} withBorder radius="md" p="lg">
-          <Stack gap="xs">
-            <Group justify="space-between" wrap="wrap">
-              <Anchor component={Link} to={`/case-studies/${cs.slug}`} fz="lg">
-                {cs.title}
-              </Anchor>
-              {cs.date && <Text c="dimmed" fz="sm">{cs.date}</Text>}
-            </Group>
-            {cs.summary && <Text c="dimmed">{cs.summary}</Text>}
-            <Group gap="xs">
-              {(cs.tags || []).map(t => <Badge key={t} variant="light">{t}</Badge>)}
-              {cs.series && <Badge color="grape" variant="light">{cs.series}{cs.part ? ` • Part ${cs.part}` : ""}</Badge>}
-            </Group>
-            
-          </Stack>
-        </Card>
+    <Grid>
+      {items.map((cs) => (
+        <Grid.Col span={{ base: 12, sm: 6, md: 4 }} key={cs.slug}>
+          <Card withBorder radius="md" p="md" component={Link} to={`/case-studies/${cs.slug}`} style={{ textDecoration: "none" }}>
+            {cs.thumbImage && <Image src={cs.thumbImage} alt="" radius="sm" mb="sm" withPlaceholder />}
+            <Stack gap={4}>
+              <Title order={4}>{cs.title}</Title>
+              <Text c="dimmed" fz="sm">{cs.summary}</Text>
+              <Group gap="xs" mt="xs">
+                {(cs.tags || []).slice(0,3).map(t => <Badge key={t} variant="light">{t}</Badge>)}
+              </Group>
+            </Stack>
+          </Card>
+        </Grid.Col>
       ))}
-    </Stack>
+    </Grid>
   );
 }

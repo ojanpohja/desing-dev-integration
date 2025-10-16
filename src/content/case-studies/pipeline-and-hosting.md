@@ -5,6 +5,8 @@ summary: "CI steps, deploy targets, and the checks that keep it green."
 tags: ["ci-cd","cloudflare","github-pages"]
 slug: "pipeline-and-hosting"
 series: "Tokens → Theme"
+coverImage: "/images/case-studies/cloudflare.png"
+thumbImage: "/images/case-studies/cloudflare.png"
 part: 3
 ---
 

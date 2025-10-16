@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { getCaseStudy, getSeriesNeighbors } from "../content";
-import { Title, Text, Stack, Anchor, Divider } from "@mantine/core";
+import { Title, Text, Stack, Anchor, Divider, Image } from "@mantine/core";
 import ReactMarkdown from "react-markdown";
 import SeriesPager from "../components/SeriesPager";
 
@@ -24,14 +24,36 @@ export default function CaseStudyPage() {
     <Stack p="lg" gap="md" maw={900}>
       <Title order={2}>{cs.title}</Title>
       {cs.date && <Text c="dimmed">{cs.date}</Text>}
+
+      {/* HERO image */}
+      {cs.coverImage && (
+        <Image
+          src={cs.coverImage}
+          alt={cs.coverAlt || cs.title}
+          radius="md"
+          mt="sm"
+          withPlaceholder
+        />
+      )}
+
       <Divider />
+
       <ReactMarkdown
         components={{
           h1: (props) => <Title order={2} {...props} />,
           h2: (props) => <Title order={3} mt="md" {...props} />,
           h3: (props) => <Title order={4} mt="md" {...props} />,
-          p: (props) => <Text my="sm" {...props} />,
-          a: (props) => <Anchor {...props} />,
+          p:  (props) => <Text my="sm" {...props} />,
+          a:  (props) => <Anchor {...props} />,
+          img: (props) => (
+            <Image
+              src={props.src ?? ""}
+              alt={props.alt ?? ""}
+              radius="md"
+              my="md"
+              withPlaceholder
+            />
+          ),
         }}
       >
         {cs.body}

@@ -5,6 +5,8 @@ summary: "Hands-on steps and fixes for the gotchas we met."
 tags: ["how-to","troubleshooting"]
 slug: "implementation-and-troubleshooting"
 series: "Tokens → Theme"
+coverImage: "/images/case-studies/applyingbrand.png"
+thumbImage: "/images/case-studies/applyingbrand.png"
 part: 5
 ---
 

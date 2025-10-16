@@ -5,6 +5,8 @@ summary: "Outcomes and proof from moving design decisions into tokens."
 tags: ["case-study","design-tokens","outcomes"]
 slug: "why-token-driven-design"
 series: "Tokens → Theme"
+coverImage: "/images/case-studies/brandcolors.png"
+thumbImage: "/images/case-studies/brandcolors.png"
 part: 1
 ---
 

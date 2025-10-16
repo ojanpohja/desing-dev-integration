@@ -1,12 +1,11 @@
 ---
 title: "Building a Design System Pipeline — A Designer’s AI-Assisted Journey"
 date: "2025-10-16"
-summary: "How a designer built a working design-to-code pipeline from local dev to GitHub and Cloudflare, with Storybook, tokens, and CI/CD — using AI as a co-pilot."
-teaser: "From zero to CI/CD: Storybook + shared tokens + Cloudflare Pages, built by a designer with AI as a sparring partner."
-tags: ["design systems", "tokens", "storybook", "cloudflare", "ci/cd", "learning"]
+summary: "How a designer built a working design-to-code pipeline…"
 slug: "ai-assisted-design-system-pipeline"
-coverImage: "/images/case-studies/ai-pipeline-hero.svg"
+tags: ["design systems","tokens","storybook","cloudflare","ci/cd","learning"]
 ---
+
 
 ## Why this case
 
@@ -16,7 +15,7 @@ This case documents how a designer assembled a functioning design-to-code pipeli
 
 - **CI/CD:** local → GitHub Actions → Cloudflare Pages  
 - **Docs:** Storybook as component documentation + shared styling source  
-- **Tokens:** foundational (CSS) with plans to automate via Style Dictionary / Tokens Studio  
+- **Tokens:** foundational (CSS) with plans to automatße via Style Dictionary / Tokens Studio  
 - **A11y:** preconfigured Storybook accessibility/testing addons  
 - **Hosting:** Cloudflare serving `/` and `/storybook/` subpath
 

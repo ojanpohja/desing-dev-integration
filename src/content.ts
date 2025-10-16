@@ -6,7 +6,10 @@ type FrontMatter = {
   tags?: string[];
   slug?: string;
   series?: string;
-  part?: string | number; // will parse to number
+  part?: string | number;
+  coverImage?: string;   // NEW: hero on the detail page
+  coverAlt?: string;     // NEW: alt text for hero
+  thumbImage?: string;   // NEW: card thumbnail
 };
 
 // Bundle all MD files under /src/content/case-studies as RAW text
@@ -60,7 +63,10 @@ export type CaseStudy = {
   tags?: string[];
   body: string;
   series?: string;
-  part?: number; // numeric order inside a series
+  part?: number;
+  coverImage?: string;   // NEW
+  coverAlt?: string;     // NEW
+  thumbImage?: string;   // NEW
 };
 
 function slugFromPath(p: string) {
@@ -84,6 +90,9 @@ export function getAllCaseStudies(): CaseStudy[] {
       body,
       series: attributes.series || undefined,
       part: typeof attributes.part === "number" ? attributes.part : undefined,
+      coverImage: attributes.coverImage || undefined,  // NEW
+      coverAlt: attributes.coverAlt || undefined,      // NEW
+      thumbImage: attributes.thumbImage || undefined,  // NEW
     };
   });
 

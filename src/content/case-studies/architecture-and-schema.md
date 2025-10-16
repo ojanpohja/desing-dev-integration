@@ -5,6 +5,8 @@ summary: "From Tokens Studio JSON to a typed Mantine theme."
 tags: ["architecture","schema","mantine"]
 slug: "architecture-and-schema"
 series: "Tokens → Theme"
+coverImage: "/images/case-studies/tokenstudio.png"
+thumbImage: "/images/case-studies/tokenstudio.png"
 part: 2
 ---
 
