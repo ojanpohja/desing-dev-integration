@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/desing-dev-integration/', // must match the repo name
+  base: './', // relative asset URLs -> safest for GitHub Pages
 });
