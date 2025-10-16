@@ -6,8 +6,13 @@ const OUT_DIR = path.resolve('src/theme');
 const OUT_FILE = path.join(OUT_DIR, 'mantine-theme.ts');
 
 function readTokens() {
-  const raw = fs.readFileSync(TOKENS_PATH, 'utf-8');
-  return JSON.parse(raw);
+  try {
+    const raw = fs.readFileSync(TOKENS_PATH, 'utf-8');
+    return JSON.parse(raw);
+  } catch (e) {
+    console.warn('Warning: failed to parse tokens.json; using last known theme.', e.message);
+    return {};
+  }
 }
 function pick(obj, pathArray, fallback) {
   return pathArray.reduce((acc, key) => (acc && acc[key] ? acc[key] : undefined), obj) ?? fallback;

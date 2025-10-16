@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mantine Tokens Demo</title>
+
+    <script>
+      (function() {
+        const m = localStorage.getItem("mantine-color-scheme-value");
+        if (m) document.documentElement.dataset.colorScheme = m;
+      })();
+    </script>
+
   </head>
   <body>
     <div id="root"></div>
