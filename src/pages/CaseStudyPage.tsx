@@ -20,32 +20,40 @@ export default function CaseStudyPage() {
 
   const { prev, next, siblings, index } = getSeriesNeighbors(cs.slug);
 
+  // Keep markdown mapping very simple to avoid TS/JSX pitfalls in CI
+  const mdComponents = {
+    h1: (props: any) => <Title order={2} mt="md" {...props} />,
+    h2: (props: any) => <Title order={3} mt="md" {...props} />,
+    h3: (props: any) => <Title order={4} mt="md" {...props} />,
+    p:  (props: any) => <Text my="sm" {...props} />,
+    a:  (props: any) => <Anchor {...props} />,
+    img: (props: any) => <Image src={props.src ?? ""} alt={props.alt ?? ""} radius="md" my="md" />,
+  } as const;
+
   return (
     <Stack p="lg" gap="md" maw={900}>
       <Title order={2}>{cs.title}</Title>
-      {cs.date ? <Text c="dimmed">{cs.date}</Text> : null}
+      {cs.date && <Text c="dimmed">{cs.date}</Text>}
 
-      {/* HERO image (optional) */}
-      {cs.coverImage ? (
-        <Image
-          src={cs.coverImage}
-          alt={cs.coverAlt || cs.title}
-          radius="md"
-          mt="sm"
-        />
-      ) : null}
+      {cs.coverImage && (
+        <Image src={cs.coverImage} alt={cs.coverAlt || cs.title} radius="md" mt="sm" />
+      )}
 
       <Divider />
 
-      <ReactMarkdown
-        components={{
-          // note: react-markdown v8 passes a 'node' prop; ignore it to keep TS happy
-          h1: ({ node, ...props }) => <Title order={2} {...props} />,
-          h2: ({ node, ...props }) => <Title order={3} mt="md" {...props} />,
-          h3: ({ node, ...props }) => <Title order={4} mt="md" {...props} />,
-          p:  ({ node, ...props }) => <Text my="sm" {...props} />,
-          a:  ({ node, ...props }) => <Anchor {...props} />,
-          img: ({ node, ...props }) => (
-            <Image
-              src={props.src ?? ""}
-              alt={props.alt ?? ""}
+      <ReactMarkdown components={mdComponents}>
+        {cs.body}
+      </ReactMarkdown>
+
+      <Divider my="md" />
+
+      <SeriesPager
+        current={cs}
+        siblings={siblings}
+        index={index}
+        prev={prev}
+        next={next}
+      />
+    </Stack>
+  );
+}
